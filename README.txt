@@ -1,18 +1,19 @@
-# Galería de Fotos
+########## PLEASE READ CAREFULLY ###########
 
-¡Bienvenido a la galería de fotos! Esta aplicación web permite visualizar y gestionar imágenes de manera sencilla y atractiva.
+This template is the creative and honest work of its author, Penoel Koukou.
+It is distributed by BeauxThemes.com under a written and documented 
+contract between the author and the owners of BeauxThemes.com
 
-## 📸 Descripción
+BeauxThemes.com and the author hold the copyright to this template.
+That being said, you do not have the right to sell it or distribute in any way
+without the written consents of the author and the owners of BeauxThemes.
 
-Esta galería de fotos es una aplicación web que permite a los usuarios:
+You can, however, use it for your own website or your client's website if you are a 
+web developer. You are allowed to use the template on only ONE website.
 
-- Ver imágenes en una interfaz limpia y moderna.
-- Navegar por las fotos de manera intuitiva.
-- Acceder desde cualquier dispositivo con un navegador web.
+The pictures and resources used in the design of this template are the properties of 
+their respective owners.
 
-## 🚀 Tecnologías Utilizadas
 
-- **HTML5**: Estructura básica de la página.
-- **CSS3**: Estilos y diseño responsivo.
-- **PHP**: Lógica del servidor y gestión de imágenes.
-- **JavaScript**: Interactividad y mejoras en la experiencia del usuario.
+######### CONTACT #########
+http://beauxthemes.com/contact
