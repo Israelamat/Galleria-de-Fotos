@@ -37,7 +37,7 @@ class imagen{
     public function __construct(
         string $nombre,
         string $descripcion,
-        string $categoria,
+        string $categoria = "",
         int $numVisualizaciones = 0,
         int $numLikes = 0,
         int $numDownloads = 0
