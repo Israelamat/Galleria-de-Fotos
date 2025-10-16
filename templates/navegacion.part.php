@@ -28,6 +28,9 @@ require_once __DIR__ . '/../src/utils.class.php';
         <li class="<?php echo utils::esOpcionMenuActiva('/contact.php') ? 'active lien' : 'lien'; ?>">
           <a href="/templates/contact.php"><i class="fa fa-phone-square sr-icons"></i> Contact</a>
         </li>
+        <li class="<?php echo utils::esOpcionMenuActiva('/galeria.php') ? 'active lien' : 'lien'; ?>">
+          <a href="/templates/galeria.php"><i class="fa fa-file-text sr-icons"></i> Galeria</a>
+        </li>
       </ul>
     </div>
   </div>
