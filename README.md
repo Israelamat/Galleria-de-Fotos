@@ -17,5 +17,3 @@ Esta galería de fotos es una aplicación web que permite a los usuarios:
 - **PHP**: Lógica del servidor y gestión de imágenes.
 - **JavaScript**: Interactividad y mejoras en la experiencia del usuario.
 
-## 📁 Estructura del Proyecto
-
