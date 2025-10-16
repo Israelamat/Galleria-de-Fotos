@@ -4,7 +4,8 @@ class imagen{
     const RUTA_IMAGENES_PORTFOLIO = '/public/images/index/portfolio/';
     const RUTA_IMAGENES_GALERIA   = '/public/images/index/gallery/';
     const RUTA_IMAGENES_CLIENTES  = '/public/images/clients/';
-
+    const RUTA_IMAGENES_SUBIDAS   = '/public/images/galeria/';
+    
     /**
      * @var int
      */
