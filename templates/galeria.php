@@ -3,6 +3,11 @@ require __DIR__ . '/../src/exceptions/FileException.php';
 require __DIR__ . '/../src/utils/File.class.php';
 require __DIR__ . '/../src/entity/imagen.class.php';
 
+$titulo = '';        
+$descripcion = '';  
+$mensaje = '';
+$errores = [];
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     try {
         $titulo = trim(htmlspecialchars($_POST['titulo']));
