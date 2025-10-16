@@ -1,7 +1,7 @@
 <?php
 require __DIR__ . '/../src/exceptions/FileException.php';
 require __DIR__ . '/../src/utils/File.class.php';
-require __DIR__ - '/../src/entity/imagen.class.php';
+require __DIR__ . '/../src/entity/imagen.class.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     try {
