@@ -35,6 +35,10 @@ class imagen{
      */
     private $numDownloads;
 
+    /**
+     * @params string $nombre, string $descripcion, string $categoria, int $numVisualizaciones, int $numLikes, int $numDownloads
+     * @return Imagen
+     */
     public function __construct(
         string $nombre,
         string $descripcion,
@@ -117,19 +121,31 @@ class imagen{
     }
 
     // -------------------- toString --------------------
+    /**
+     * @return string
+     */ 
     public function __toString(): string {
         return $this->descripcion;
     }
 
     // -------------------- MÉTODOS PARA OBTENER URL --------------------
+    /**
+     * @return string
+     */
     public function getUrlPortfolio(): string {
         return self::RUTA_IMAGENES_PORTFOLIO . $this->getNombre();
     }
 
+    /**
+     * @return string
+     */
     public function getUrlGaleria(): string {
         return self::RUTA_IMAGENES_GALERIA . $this->getNombre();
     }
 
+    /**
+     * @return string
+     */
     public function getUrlClientes(): string {
         return self::RUTA_IMAGENES_CLIENTES . $this->getNombre();
     }
