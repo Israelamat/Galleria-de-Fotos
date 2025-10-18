@@ -22,4 +22,6 @@ class utils
             return $listaNueva[0]; // Devolvemos el primer fragmento del array
         }
     }
+
+    
 }

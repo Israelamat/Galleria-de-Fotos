@@ -19,8 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } catch (FileException $fileException) {
         $errores[] = $fileException->getMessage();
     }
-}
-?>
+}?>
 
 
 <?php require_once __DIR__ . '/../templates/views/asociados.view.php';
