@@ -31,6 +31,9 @@ require_once __DIR__ . '/../src/utils/utils.class.php';
         <li class="<?php echo utils::esOpcionMenuActiva('/galeria.php') ? 'active lien' : 'lien'; ?>">
           <a href="/templates/galeria.php"><i class="fa fa-file-text sr-icons"></i> Galeria</a>
         </li>
+        <li class="<?php echo utils::esOpcionMenuActiva('/asociados.php') ? 'active lien' : 'lien'; ?>">
+          <a href="/templates/asociados.php"><i class="fa fa-bookmark sr-icons"></i> Asociados</a>
+        </li>
       </ul>
     </div>
   </div>
