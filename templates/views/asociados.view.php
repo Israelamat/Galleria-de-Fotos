@@ -53,9 +53,15 @@
         <div class="form-group">
           <div class="col-xs-12">
             <label class="label-control">Nombre de la compañia</label>
-            <input type="text" class="form-control" id="nombre" name="nombre" required ="<?= $nombre ?> ">
+            <input type="text" class="form-control" id="nombre" name="nombre" required="<?= $nombre ?> ">
             <label class="label-control">Descripción</label>
             <textarea class="form-control" name="descripcion"><?= $descripcion ?></textarea>
+
+            <!-- CAPTCAHA -->
+            <label class="label-control">Introduce el captcha <img style="border: 1px solid #D3D0D0 "
+                src="../../src/utils/captcha.php" id='captcha'></label>
+            <input class="form-control" type="text" name="captcha">
+
             <button class="pull-right btn btn-lg sr-button">ENVIAR</button>
           </div>
         </div>
