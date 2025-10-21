@@ -40,14 +40,14 @@ class imagen{
      * @return Imagen
      */
     public function __construct(
-        string $nombre,
-        string $descripcion,
+        string $nombre = "",
+        string $descripcion = "",
         string $categoria = "",
         int $numVisualizaciones = 0,
         int $numLikes = 0,
         int $numDownloads = 0
     ){
-        $this->id = 0;
+        $this->id = null;
         $this->nombre = $nombre;
         $this->descripcion = $descripcion;
         $this->categoria = $categoria;
@@ -57,7 +57,7 @@ class imagen{
     }
 
     // -------------------- GETTERS --------------------
-    public function getId(): int { return $this->id; }
+    public function getId(): ?int { return $this->id; }
     public function getNombre(): string { return $this->nombre; }
     public function getDescripcion(): string { return $this->descripcion; }
     public function getCategoria(): string { return $this->categoria; }
