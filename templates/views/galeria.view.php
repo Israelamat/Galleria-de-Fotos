@@ -61,13 +61,40 @@
             <label class="label-control">Introduce el captcha <img style="border: 1px solid #D3D0D0 "
                 src="../../src/utils/captcha.php" id='captcha'></label>
             <input class="form-control" type="text" name="captcha">
-            
+
             <button class="pull-right btn btn-lg sr-button">ENVIAR</button>
           </div>
         </div>
       </form>
       <hr class="divider">
       <div class="imagenes_galeria">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Imagen</th>
+              <th scope="col">Visualizaciones</th>
+              <th scope="col">Likes</th>
+              <th scope="col">Descargas</th>
+            </tr>
+          </thead>
+          <tbody>
+            <?php foreach ($imagenes as $imagen) : ?>
+              <tr>
+                <th scope="row"><?= $imagen->getNombre() ?></th>
+                <td>
+                  <img src="<?= $imagen->getUrlImagenes() ?>"
+                    alt="<?= $imagen->getDescripcion() ?>"
+                    title="<?= $imagen->getDescripcion() ?>"
+                    width="100px">
+                </td>
+                <td><?= $imagen->getNumVisualizaciones() ?></td>
+                <td><?= $imagen->getNumLikes() ?></td>
+                <td><?= $imagen->getNumDownloads() ?></td>
+              </tr>
+            <?php endforeach; ?>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>

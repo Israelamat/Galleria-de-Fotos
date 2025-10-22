@@ -149,4 +149,11 @@ class imagen{
     public function getUrlClientes(): string {
         return self::RUTA_IMAGENES_CLIENTES . $this->getNombre();
     }
+
+    /**
+     * @return string
+     */
+    public function getUrlImagenes(): string {
+        return self::RUTA_IMAGENES_SUBIDAS . $this->getNombre();
+    }
 }
