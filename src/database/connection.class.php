@@ -10,8 +10,8 @@ class Connection
                 PDO::ATTR_PERSISTENT => true // Guarda la conexión y no hay que volver a abrirla en la siguiente petición
             ];
             $connection = new PDO(
-                'mysql:host=dwes.local1;dbname=cursophp;charset=utf8',
-                'userCurso',
+                'mysql:host=localhost;dbname=cursophp;charset=utf8',
+                'usercurso', //Lo cambio por usercurso ya que lo hice asi en xampp
                 'php',
                 $opciones
             );

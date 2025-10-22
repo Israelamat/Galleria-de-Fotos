@@ -1,6 +1,7 @@
-<?php 
+<?php
 require_once __DIR__ . '/../src/entity/asociados.class.php';
 require_once __DIR__ . '/../src/utils/File.class.php';
+require_once __DIR__ . '/../src/database/connection.class.php';
 
 $nombre = '';
 $descripcion = '';
@@ -23,9 +24,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $descripcion = trim(htmlspecialchars($_POST['descripcion']));
                 $tiposAceptados = ['image/jpeg', 'image/gif', 'image/png'];
                 $imagen = new File('imagen', $tiposAceptados);
-                $mensaje = 'Datos enviados';
+                $imagen->saveUploadFile(Asociados::RUTA_LOGOS_ASOCIADOS);
 
-                $imagen->saveUploadFile(Asociados::RUTA_LOGOS_ASOCIADOS );
+                $asociado = new Asociados($nombre, $imagen->getFileName(), $descripcion);
+                $conexion = Connection::make();
+
+                $sql = "INSERT INTO asociados (nombre, logo, descripcion) 
+                VALUES (:nombre, :logo, :descripcion)";
+
+                $pdoStatement = $conexion->prepare($sql);
+
+                $parametros = [
+                    ':nombre' => $asociado->getNombre(),
+                    ':logo' => $asociado->getLogo(),
+                    ':descripcion' => $asociado->getDescripcion()
+                ];
+
+                if ($pdoStatement->execute($parametros) === false) {
+                    $errores[] = "No se ha podido guardar el asociado en la base de datos.";
+                } else {
+                    $mensaje = "El asociado se ha guardado correctamente.";
+                    $nombre = "";
+                    $descripcion = "";
+                }
             } catch (FileException $fileException) {
                 $errores[] = $fileException->getMessage();
             }
@@ -36,7 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $nombre = "";
         $descripcion = "";
     }
-}?>
+} ?>
 
 
 <?php require_once __DIR__ . '/../templates/views/asociados.view.php';
