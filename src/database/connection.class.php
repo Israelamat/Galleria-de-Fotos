@@ -1,19 +1,18 @@
 <?php
 class Connection
 {
-    public static function make()
+    /**
+     * @param $config
+     * @return PDO
+     */
+    public static function make($config)
     {
         try {
-            $opciones = [
-                PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8", // Para utilizar utf8
-                PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION, // Para poder capturar la excepción
-                PDO::ATTR_PERSISTENT => true // Guarda la conexión y no hay que volver a abrirla en la siguiente petición
-            ];
             $connection = new PDO(
-                'mysql:host=localhost;dbname=cursophp;charset=utf8',
-                'usercurso', //Lo cambio por usercurso ya que lo hice asi en xampp
-                'php',
-                $opciones
+                $config['connection'] . ';dbname=' . $config['name'],
+                $config['username'],
+                $config['password'],
+                $config['options']
             );
         } catch (PDOException $PDOException) {
             die($PDOException->getMessage()); // Se muestra la excepció como si fuera un echo y detiene la ejecución del script

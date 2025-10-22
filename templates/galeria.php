@@ -5,6 +5,7 @@ require __DIR__ . '/../src/entity/imagen.class.php';
 require __DIR__ . '/../src/database/Connection.class.php';
 require __DIR__ . '/../src/exceptions/QueryException.php';
 require __DIR__ . '/../src/database/QueryBuilder.class.php';
+require __DIR__ . '/../app/config.php';
 
 $titulo = "";
 $errores = [];
@@ -12,7 +13,7 @@ $descripcion = '';
 $mensaje = '';
 
 try {
-    $conexion = Connection::make();
+    $conexion = Connection::make($config['database']);
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $descripcion = trim(htmlspecialchars($_POST['descripcion']));
