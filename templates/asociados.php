@@ -27,7 +27,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $imagen->saveUploadFile(Asociados::RUTA_LOGOS_ASOCIADOS);
 
                 $asociado = new Asociados($nombre, $imagen->getFileName(), $descripcion);
-                $conexion = Connection::make();
+
+                $config = require __DIR__ . '/../app/config.php';
+                App::bind('config', $config); // Como ya no se usa datos hardcodeados, 
+                $conexion = Connection::make();//Se cambioa la manera de conexion 
 
                 $sql = "INSERT INTO asociados (nombre, logo, descripcion) 
                 VALUES (:nombre, :logo, :descripcion)";

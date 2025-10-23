@@ -1,11 +1,12 @@
 <?php
-require __DIR__ . '/../src/exceptions/FileException.php';
-require __DIR__ . '/../src/utils/File.class.php';
-require __DIR__ . '/../src/entity/imagen.class.php';
-require __DIR__ . '/../src/database/Connection.class.php';
-require __DIR__ . '/../src/exceptions/QueryException.php';
-require __DIR__ . '/../src/database/QueryBuilder.class.php';
-require __DIR__ . '/../app/config.php';
+require_once __DIR__ . '/../src/exceptions/FileException.php';
+require_once __DIR__ . '/../src/utils/File.class.php';
+require_once __DIR__ . '/../src/entity/imagen.class.php';
+require_once __DIR__ . '/../src/database/Connection.class.php';
+require_once __DIR__ . '/../src/exceptions/QueryException.php';
+require_once __DIR__ . '/../src/database/QueryBuilder.class.php';
+require_once __DIR__ . '/../src/exceptions/AppException.php';
+require_once __DIR__ . '/../core/App.php';
 
 $titulo = "";
 $errores = [];
@@ -13,7 +14,10 @@ $descripcion = '';
 $mensaje = '';
 
 try {
-    $conexion = Connection::make($config['database']);
+    $config = require __DIR__ . '/../app/config.php';
+    //var_dump($config);
+    App::bind('config', $config); // Guardamos la configuración en el contenedor de servicios
+    $conexion = App::getConnection();
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $descripcion = trim(htmlspecialchars($_POST['descripcion']));
@@ -39,13 +43,14 @@ try {
         }
     }
 
-    $queryBuilder = new QueryBuilder($conexion);
-    $imagenes = $queryBuilder->findAll('imagenes', 'Imagen');
-
+    $queryBuilder = new QueryBuilder('imagenes', 'imagen');
+    $imagenes = $queryBuilder->findAll();
 } catch (FileException $fileException) {
     $errores[] = $fileException->getMessage();
 } catch (QueryException $queryException) {
     $errores[] = $queryException->getMessage(); //Antes ponia aqui fileException 
+} catch ( AppException $appException ){
+ $errores[] = $appException->getMessage();
 }
 
 require_once 'views/galeria.view.php';

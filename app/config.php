@@ -2,7 +2,7 @@
 return [
     'database' => [
         'name' => 'cursophp',
-        'username' => 'userCurso',
+        'username' => 'usercurso', //Lo he configurado como el xampp
         'password' => 'php',
         'connection' => 'mysql:host=localhost',
         'options' => [

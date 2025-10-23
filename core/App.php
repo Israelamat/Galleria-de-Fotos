@@ -1,7 +1,6 @@
 <?php
-require_once __DIR__ . '/../src/exceptions/AppException.class.php';
+require_once __DIR__ . '/../src/exceptions/AppException.php';
 require_once __DIR__ . '/../src/database/connection.class.php';
-require_once __DIR__  . '/../app/config.php';
 
 class App
 {
@@ -34,9 +33,8 @@ class App
      */
     public static function getConnection()
     {
-        $config = static::get('config'); // No me coje el config como variable global
         if (!array_key_exists('connection', static::$container))
-            static::$container['connection'] = Connection::make($config['database']);
+            static::$container['connection'] = Connection::make();
         return static::$container['connection'];
     }
 }
