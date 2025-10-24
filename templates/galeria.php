@@ -16,8 +16,11 @@ $mensaje = '';
 try {
     $config = require __DIR__ . '/../app/config.php';
     //var_dump($config);
-    App::bind('config', $config); // Guardamos la configuración en el contenedor de servicios
+    App::bind('config', $config);
     $conexion = App::getConnection();
+    $queryBuilder = new QueryBuilder('imagenes','Imagen');
+    $imagenes = $queryBuilder->findAll();
+
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $descripcion = trim(htmlspecialchars($_POST['descripcion']));
@@ -26,25 +29,12 @@ try {
         $imagen = new File('imagen', $tiposAceptados); // El nombre del input del formulario
         $imagen->saveUploadFile(Imagen::RUTA_IMAGENES_SUBIDAS);
 
-        $sql = "INSERT INTO imagenes (nombre, descripcion, categoria)
-                VALUES (:nombre, :descripcion, :categoria)";
-        $pdoStatement = $conexion->prepare($sql);
-
-        $parametros = [
-            ':nombre' => $imagen->getFileName(),
-            ':descripcion' => $descripcion,
-            ':categoria' => '1'
-        ];
-
-        if ($pdoStatement->execute($parametros) === false) {
-            $errores[] = "No se ha podido guardar la imagen en la base de datos.";
-        } else {
-            $mensaje = "Se ha guardado la imagen correctamente.";
-        }
+        $imagenGaleria = new Imagen($imagen->getFileName(),$descripcion, "1"); // inicializo 1 para respetar restricciones de foreing key y no se añada a la BD vacio
+        $queryBuilder->save($imagenGaleria);
+        $mensaje = "Se ha guardado la imagen correctamente";
+        $imagenes = $queryBuilder->findAll();
     }
 
-    $queryBuilder = new QueryBuilder('imagenes', 'imagen');
-    $imagenes = $queryBuilder->findAll();
 } catch (FileException $fileException) {
     $errores[] = $fileException->getMessage();
 } catch (QueryException $queryException) {

@@ -45,4 +45,28 @@ class QueryBuilder
         valores. */
         return $pdoStatement->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, $this->classEntity);
     }
+
+    /**
+     * @param IEntity $entity
+     * @return void
+     * @throws QueryException
+     */
+    public function save(IEntity $entity): void
+    {
+        try {
+            $parametrers = $entity->toArray();
+            $sql = sprintf(
+                'INSERT INTO %s (%s) VALUES (%s)',
+                $this->table,
+                implode(', ', array_keys($parametrers)),
+                ':' . implode(', :', array_keys($parametrers))
+            );
+            //var_dump($parametrers);
+            $statement = $this->connection->prepare($sql);
+            $statement->execute($parametrers);
+        } catch (PDOException $exception) {
+            throw new QueryException("Error al insertar en la base de datos.");
+            //die("PDO: " . $exception->getMessage());
+        }
+    }
 }

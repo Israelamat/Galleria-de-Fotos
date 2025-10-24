@@ -1,5 +1,6 @@
 <?php
-class imagen{
+require_once __DIR__ . '/IEntity.interface.php';
+class imagen implements IEntity{
 
     const RUTA_IMAGENES_PORTFOLIO = '/public/images/index/portfolio/';
     const RUTA_IMAGENES_GALERIA   = '/public/images/index/gallery/';
@@ -155,5 +156,21 @@ class imagen{
      */
     public function getUrlImagenes(): string {
         return self::RUTA_IMAGENES_SUBIDAS . $this->getNombre();
+    }
+
+    //---------------------------Interface--------------------
+    /**
+     * @return array
+     */
+    public function toArray(): array{
+        return [
+        //'id' => $this->getId(), // en el anterior insert no se le pasa el ID y si se le pasa ahora la BD recibe un null 
+        'nombre' => $this->getNombre(),
+        'descripcion' => $this->getDescripcion(),
+        'numVisualizaciones' => $this->getNumVisualizaciones(),
+        'numLikes' => $this->getNumLikes(),
+        'numDownloads' => $this->getNumDownloads(),
+        'categoria' => $this->getCategoria()
+        ];
     }
 }
